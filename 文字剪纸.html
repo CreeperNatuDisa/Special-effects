@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>文字剪纸</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway+Guy">
 </head>
 <style>
@@ -21,7 +21,7 @@
         background-color: #eaece5;
     }
     .text{
-        font-size: 8em;
+        font-size: 6em;
         position: relative;
         display: flex;
     }
@@ -133,3 +133,16 @@
     </div>
 </body>
 </html>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    window.addEventListener("resize", function () {
+      window.location = "";
+    });
+    try {
+    if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      $(".text").css("font-size","3em")
+    } else {
+        $(".text").css("font-size","6em")
+    }
+  } catch (e) {}
+</script>
