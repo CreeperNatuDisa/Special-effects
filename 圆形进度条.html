@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔞(ᗜˬᗜ)🔞</title>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+  </head>
+  <style>
+    .box {
+      overflow: visible;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .inner {
+      stroke-width: 13px;
+      stroke: #ddd;
+      transform: rotate(-90deg);
+    }
+  </style>
+  <body>
+    <div id="bigbox">
+        <svg class="box" v-if="!flag">
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color: #4ce5e0; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #7d6fec; stop-opacity: 1" />
+            </linearGradient>
+            <ellipse cx="0" cy="0" rx="200" ry="200" fill="url(#grad1)" />
+            <circle r="194" cx="0" cy="0" fill="transparent" class="inner" stroke-dasharray="1220" :stroke-dashoffset="progress"/>
+            <text class="txt" y="235" x="-35" fill="#148dff">{{txt}}</text>
+            <text class="txt" y="260" x="-10" fill="#148dff">{{num+'%'}}</text>
+        </svg>
+        <img v-if="!flag" src="./images/123.png" style="position: absolute;left:50%;top:50%;width: 380px;transform: translate(-50%, -50%);">
+     </div>
+  </body>
+</html>
+<script>
+  const vm = new Vue({
+    el: "#bigbox",
+    data() {
+      return {
+        progress: 0,
+        num: 0,
+        txt: "LOADING",
+        txtnum: 0,
+        flag:false
+      };
+    },
+    methods: {
+      begin() {
+        this.disabled = true;
+        this.progress = 0;
+        this.timer = setInterval(() => {
+          if (this.progress <= -1220) {
+            clearInterval(this.timer);
+            this.flag=true
+            window.location ="https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.1007.top_right_bar_window_history.content.click";
+          } else {
+            this.progress--;
+          }
+          if (this.txtnum <= 10) {
+            this.txt = "LOADING";
+          } else if (this.txtnum <= 20) {
+            this.txt = "LOADING.";
+          } else if (this.txtnum <= 30) {
+            this.txt = "LOADING..";
+          } else {
+            this.txt = "LOADING...";
+          }
+          if (this.txtnum >= 40) {
+            this.txtnum = 0;
+          } else {
+            this.txtnum++;
+          }
+          this.num = parseInt((this.progress / -1220) * 100);
+        }, 10);
+      },
+    },
+    mounted: function () {
+      this.begin();
+    },
+  });
+</script>

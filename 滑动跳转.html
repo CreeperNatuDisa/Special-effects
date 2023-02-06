@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      justify-content: center;
+      display: flex;
+    }
+    .bgimg {
+      width: 100%;
+    }
+    .music_ico {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 25px;
+      height: 25px;
+      padding: 2px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      border: 1px solid #fff;
+    }
+    li{
+        position: relative;
+    }
+    .txtbox{
+        list-style-type: none;
+        margin-top: -120%;
+        margin-left: -8px;
+        font-size: 50px;
+    }
+    @keyframes vli1{
+        0%{right: -100px;color:rgba(0,0,0,.0)}
+        100%{right: 0px;}
+    }
+    @keyframes vli2{
+        0%{left: -100px;color:rgba(0,0,0,.0)}
+        100%{left: 0px;}
+    }
+    .btn{
+      width: 50px;
+      margin-top: 15%;
+      margin-left: -10px;
+      animation: inf 1.3s infinite;
+    }
+    @keyframes inf {
+      0%{margin-top: 110px;}
+      50%{margin-top: 120px;}
+      100%{margin-top: 110px;}
+    }
+    .bigbox{
+      width: 100%;
+      text-align: center;
+      position: relative;
+      transition: .5s;
+    }
+</style>
+<body>
+    <div class="bigbox">
+        <img ondragstart="return false;" class="bgimg" src="./images/backgoround.png" />
+        <div class="music_ico">
+          <img ondragstart="return false;" id="msc_ico" src="./images/音符.png" />
+        </div>
+        <ul class="txtbox">
+          <li style="animation: vli1 .2s">除</li>
+          <li style="animation: vli2 .6s">夕</li>
+          <li style="animation: vli1 1s">快</li>
+          <li style="animation: vli2 1.2s">乐</li>
+        </ul>
+        <img ondragstart="return false;" src="./images//箭头.png" class="btn">
+        <div style="width: 100%;height: 500px;"></div>
+      </div>
+      <audio id="msc_btn" autoplay  src="./src/Never Gonna Give You Up-Rick Astley.mp3"></audio>
+</body>
+</html>
+<script>
+    var n=0
+    var flag=true
+    var flag2=false
+    var timer=null
+    $('#msc_btn')[0].pause()
+    $('.music_ico').click(function(){
+        flag=!flag
+        if(flag){
+            $('#msc_btn')[0].play()
+            timer=setInterval(()=>{
+                n++
+                $('#msc_ico').css('transform','rotate('+n+'deg)')
+            },10)
+        }else{
+            $('#msc_btn')[0].pause()
+            clearInterval(timer)
+        }
+    })
+    $(document).on('touchend',function(){
+      $("body,html").animate({scrollTop:0})
+    })
+    $(document).on('touchmove',function(){
+      if($(document).scrollTop()>=250){
+        window.location="https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click"
+      }
+    })
+</script>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>跳转大厅</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.css"
+  />
+  <!-- 石蒜 -->
+  <style>
+    #sakana-widget-chisato {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+    }
+    #sakana-widget-takina {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+    }
+    main {
+      text-align: center;
+      margin: 24px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    main div {
+      margin-top: 16px;
+      display: flex;
+    }
+    @media screen and (max-width: 768px) {
+      main div {
+        display: none;
+      }
+    }
+    main a,
+    main a:visited {
+      margin-top: 32px;
+      display: block;
+      color: inherit;
+      background-color: #eeeeee;
+      font-size: 18px;
+      width: 140px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 2px;
+      text-decoration: none;
+    }
+    main a:hover,
+    main a:active {
+      color: #ffffff;
+      background-color: #7793cc;
+      text-decoration: none;
+    }
+  </style>
+  <style>
+    body{
+        background-color: #000;
+    }
+    .box{
+        position: absolute;
+        z-index: 10;
+    }
+    .box a{
+      color: pink;
+      text-decoration: none;
+      display: block;
+      margin: 20px 10px;
+    }
+    a:hover {
+
+    }
+    #canvas,.bg{
+        position: absolute;
+    }
+  </style>
+  <body>
+    <span class="bg"></span>
+    <canvas id="canvas"></canvas>
+    <div class="box">
+      <a href="滑动跳转.html">滑动跳转</a>
+      <a href="粒子特效.html">滑动跳转</a>
+      <a href="流星雨.html">流星雨</a>
+      <a href="文字弹跳.html">文字弹跳</a>
+      <a href="旋转加载动画.html">旋转加载动画</a>
+      <a href="圆形进度条.html">圆形进度条</a>
+      <a href="文字剪纸.html">文字剪纸</a>
+    </div>
+    <div id="sakana-widget-chisato"></div>
+    <div id="sakana-widget-takina"></div>
+  </body>
+</html>
+<!-- 石蒜 -->
+<script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.js"></script>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount("#sakana-widget-chisato");
+    new SakanaWidget().mount("#sakana-widget-takina");
+  }
+</script>
+<!-- 粒子特效 -->
+<script>
+    (function(){
+        const canvas=document.getElementById('canvas');
+        const ctx=canvas.getContext('2d');
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+
+        const particleNum=400;
+        const lineDistance=100;
+        const colorRGB='254,250,224';
+        let particles=[];
+        let interactionParticle=null;
+
+        class Particle{
+            constructor(x,y,velocityX,velocityY,size,color){
+                this.x=x;
+                this.y=y;
+                this.velocityX=velocityX;
+                this.velocityY=velocityY;
+                this.size=size;
+                this.color=color;
+            }
+            draw(){
+                ctx.beginPath();
+                ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+                ctx.fillStyle=this.color;
+                ctx.fill();
+            }
+            update(){
+                if(this.x<0||this.x>canvas.width){
+                    this.velocityX*=-1;
+                }
+                if(this.y<0||this.y>canvas.height){
+                    this.velocityY*=-1;
+                }
+                this.x+=this.velocityX;
+                this.y+=this.velocityY;
+                this.draw();
+            }  
+        }
+
+        function getRandomArbitrary(min,max){
+            return Math.random()*(max-min)+min;
+        }
+
+        function createParticles(){
+            for(let i=0;i<particleNum;i++){
+                let size=getRandomArbitrary(1,3);
+                let x=Math.random()*canvas.width;
+                let y=Math.random()*canvas.height;
+                let velocityX=getRandomArbitrary(-2,2);
+                let velocityY=getRandomArbitrary(-2,2);
+                let color=`rgba(${colorRGB},${1-size/3})`;
+                particles.push(new Particle(x,y,velocityX,velocityY,size,color));
+            }
+        }
+
+        function connect(){
+            for(let i=0;i<particles.length;i++){
+                for(let j=i+1;j<particles.length;j++){
+                    const p1=particles[i];
+                    const p2=particles[j];
+                    let distance=Math.sqrt(Math.pow(p1.x-p2.x,2)+Math.pow(p1.y-p2.y,2));
+                    if(distance<lineDistance){
+                        ctx.strokeStyle=`rgba(${colorRGB},${1-distance/lineDistance})`;
+                        ctx.beginPath()
+                        ctx.lineWidth=.8;
+                        ctx.moveTo(p1.x,p1.y);
+                        ctx.lineTo(p2.x,p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function bindEvents(){
+            canvas.addEventListener('mouseover',e=>{
+                if(!interactionParticle){
+                    interactionParticle=new Particle(e.x,e.y,0,0,2,`rgba(${colorRGB},1)`)
+                    particles.push(interactionParticle)
+                }
+            })
+            canvas.addEventListener('mousemove',e=>{
+                interactionParticle.x=e.x
+                interactionParticle.y=e.y
+            })
+            canvas.addEventListener('mouseout',e=>{
+                interactionParticle.x=null
+                interactionParticle.y=null
+            })
+        }
+
+        function animate(){
+            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(particle=>{
+                particle.update();
+            })
+            connect();
+        }
+        
+        bindEvents()
+        createParticles();
+        animate();
+        window.addEventListener('resize',function(){window.location=''})
+    }())
+</script>
