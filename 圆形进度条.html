@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>圆形进度条</title>
-    <style>
-      .progress {
-        position: relative;
-        overflow: visible;
-        width: 120px;
-        height: 120px;
-        transform: rotate(-90deg);
-        border-radius: 50%;
-        background: linear-gradient(to right, #4fdfd5, #7275f5);
-      }
-      .progress-bar {
-        stroke-dasharray: 377;
-        stroke-dashoffset: 377;
-      }
-    </style>
-  </head>
-  <body>
-    <svg class="progress">
-      <circle
-        class="progress-bar"
-        id="yuan"
-        cy="60"
-        cx="60"
-        r="60"
-        stroke="#fff"
-        stroke-width="10"
-        fill="transparent"
-      />
-    </svg>
-    <text class="txt">LOADING</text>
-    <script>
-      let index = 0;
-      const total = yuan.getTotalLength();
-      const timer = setInterval(() => {
-        yuan.style.strokeDashoffset = total - (index / 99) * total;
-        index++;
-        if (index === 100) {
-          clearInterval(timer);
-        }
-      }, 20);
-    </script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>圆形进度条</title>
+  <style>
+  </style>
+</head>
+<style>
+  .box {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(to right, #55e5da, #8171f4);
+    border-radius: 50%;
+  }
+
+  #yuan {
+    stroke: red;
+    stroke-width: 10;
+    stroke-dasharray: 941;
+    stroke-dashoffset: 941;
+    fill: transparent;
+    transform: rotate(-90deg);
+  }
+</style>
+
+<body>
+  <svg class="box">
+    <circle id="yuan" cy="150" cx="-150" r="150" />
+  </svg>
+  <div class="txt"></div>
+  <div class="txt2"></div>
+
 </html>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+  var n = 0;
+  var nn = 0;
+  var zc = yuan.getTotalLength()
+  var timer = setInterval(() => {
+    n++;
+    $('#yuan').css('stroke-dashoffset', zc - n / 100 * zc)
+    $(".txt2").html(n + "%")
+    if (n > 99) {
+      clearInterval(timer)
+      clearInterval(timerr)
+    }
+  }, 10)
+  var timerr = setInterval(() => {
+    nn++;
+    if (nn > 2) nn = 0;
+    if (nn == 0) {
+      $('.txt').html('LOADING.')
+    } else if (nn == 1) {
+      $('.txt').html('LOADING..')
+    } else {
+      $('.txt').html('LOADING...')
+    }
+  }, 100)
+</script>
