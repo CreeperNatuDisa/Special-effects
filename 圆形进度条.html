@@ -10,9 +10,18 @@
   </style>
 </head>
 <style>
-  .box {
-    width: 200px;
-    height: 200px;
+  body {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  svg {
     background: linear-gradient(45deg, #55e5da, #8171f4);
     border-radius: 50%;
   }
@@ -22,6 +31,7 @@
     stroke-width: 20;
     fill: transparent;
     transform: rotate(-90deg);
+
   }
 
   div {
@@ -31,22 +41,26 @@
     font-size: 20px;
   }
 
-  img {
-    width: 180px;
-    height: 180px;
-    display: block;
-    margin: 0 auto -190px auto;
+  .pic {
     border-radius: 50%;
-    position: relative;
-    z-index: 99;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+  }
+
+  .box {
+    position: absolute;
   }
 </style>
 
 <body>
-  <div style="margin-top:50%;">
-    <img src="./images/loading.png">
-    <svg class="box">
-      <circle id="yuan" cy="100" cx="-100" r="100" />
+  <span class="bg"></span>
+  <canvas id="canvas"></canvas>
+  <div class="box">
+    <img class="pic" src="./images/loading.png">
+    <svg>
+      <circle id="yuan" />
     </svg>
     <div class="txt"></div>
     <div class="txt2"></div>
@@ -56,20 +70,162 @@
 </html>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script>
-  var n = 0, nn = 0;
+  var nnn = 200
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    $('.box').css("margin-top","50%")
+  } else {
+    $('.box').css("margin-top","10%")
+    nnn = nnn * 3
+  }
+  $('svg').css({ height: nnn, width: nnn })
+  $('#yuan').css({ cy: nnn / 2, cx: -nnn / 2, r: nnn / 2 })
+  $("img").css({ height: nnn - 20, width: nnn - 20 })
+  $('.box').css({ height: nnn, width: nnn })
+  var jdn = 0, jdnn = 0;
   var zc = yuan.getTotalLength()
   $('#yuan').css("stroke-dasharray", zc)
   var timer = setInterval(() => {
-    n++;
-    $('#yuan').css('stroke-dashoffset', -n / 100 * zc)
-    $(".txt2").html(n + "%")
-    if (n > 99) clearInterval(timer), clearInterval(timerr), $("#yuan").hide()
+    jdn++;
+    $('#yuan').css('stroke-dashoffset', -jdn / 100 * zc)
+    $(".txt2").html(jdn + "%")
+    if (jdn > 99) clearInterval(timer), clearInterval(timerr), $("#yuan").hide()
   }, 20)
   var timerr = setInterval(() => {
-    nn++;
-    if (nn > 2) nn = 0;
-    if (nn == 0) $('.txt').html('LOADING.')
-    else if (nn == 1) $('.txt').html('LOADING..')
+    jdnn++;
+    if (jdnn > 3) jdnn = 0;
+    if (jdnn == 0) $('.txt').html('LOADING')
+    else if (jdnn == 1) $('.txt').html('LOADING.')
+    else if (jdnn == 2) $('.txt').html('LOADING..')
     else $('.txt').html('LOADING...')
   }, 150)
+</script>
+<script>
+  var n = 0;
+  var nn = 0;
+  (function () {
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    try {
+      if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        n = 200;
+        nn = 60;
+      } else {
+        n = 400;
+        nn = 100;
+      }
+    } catch (e) {}
+    const particleNum = n;
+    const lineDistance = nn;
+    const colorRGB = "254,250,224";
+    let particles = [];
+    let interactionParticle = null;
+
+    class Particle {
+      constructor(x, y, velocityX, velocityY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+        this.size = size;
+        this.color = color;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        if (this.x < 0 || this.x > canvas.width) {
+          this.velocityX *= -1;
+        }
+        if (this.y < 0 || this.y > canvas.height) {
+          this.velocityY *= -1;
+        }
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+        this.draw();
+      }
+    }
+
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createParticles() {
+      for (let i = 0; i < particleNum; i++) {
+        let size = getRandomArbitrary(1, 3);
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let velocityX = getRandomArbitrary(-2, 2);
+        let velocityY = getRandomArbitrary(-2, 2);
+        let color = `rgba(${colorRGB},${1 - size / 3})`;
+        particles.push(new Particle(x, y, velocityX, velocityY, size, color));
+      }
+    }
+
+    function connect() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const p1 = particles[i];
+          const p2 = particles[j];
+          let distance = Math.sqrt(
+            Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
+          );
+          if (distance < lineDistance) {
+            ctx.strokeStyle = `rgba(${colorRGB},${
+              1 - distance / lineDistance
+            })`;
+            ctx.beginPath();
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function bindEvents() {
+      canvas.addEventListener("mouseover", (e) => {
+        if (!interactionParticle) {
+          interactionParticle = new Particle(
+            e.x,
+            e.y,
+            0,
+            0,
+            2,
+            `rgba(${colorRGB},1)`
+          );
+          particles.push(interactionParticle);
+        }
+      });
+      canvas.addEventListener("mousemove", (e) => {
+        interactionParticle.x = e.x;
+        interactionParticle.y = e.y;
+      });
+      canvas.addEventListener("mouseout", (e) => {
+        interactionParticle.x = null;
+        interactionParticle.y = null;
+      });
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((particle) => {
+        particle.update();
+      });
+      connect();
+    }
+
+    bindEvents();
+    createParticles();
+    animate();
+  })();
+  window.addEventListener("resize", function () {
+    window.location = "";
+  });
 </script>
