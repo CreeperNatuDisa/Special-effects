@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下雪</title>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="src/jquery.min.js"></script>
 </head>
 <style>
     body{
@@ -20,8 +21,8 @@
 </html>
 
 <script>
-    // var xue= $('<img src="images/doge.png" style="position:absolute;top:-30px;">')
-    var xue= $("<div style='position:absolute;color:#fff;top:-30px;'>❄</div>")
+    var xue= $('<img src="images/doge.png" style="position:absolute;top:-30px;">')
+    // var xue= $("<div style='position:absolute;color:#fff;top:-30px;'>❄</div>")
     setInterval(snow,50)
     function snow(){
         xue.clone().appendTo("body").css({
