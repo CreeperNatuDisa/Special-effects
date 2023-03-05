@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .box {
+        width: 80%;
+        background-color: #e2e2e2;
+        height: 5px;
+        border-radius: 50px;
+        margin: 50% auto;
+        position: relative;
+    }
+
+    .btn {
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        left: 0;
+        top: -8px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: url("images/slider-thumb.png");
+        background-size: 100%;
+        box-shadow: 0 0 10px 1px #bebebe;
+        pointer-events: auto;
+    }
+    .middle {
+        width: 100%;
+        height: 100%;
+        background-color: aqua;
+        border-radius: 50px;
+    }
+    .txtbox{
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        width: 100%;
+        top:-50px;
+        color:#bebebe;
+    }
+    .on{
+        color:black;
+        margin-top: -5px;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="txtbox">
+            <div class="txt">0</div>
+            <div class="txt">10</div>
+            <div class="txt">15</div>
+            <div class="txt">20</div>
+            <div class="txt">25</div>
+            <div class="txt">30</div>
+            <div class="txt">35</div>
+            <div class="txt">40</div>
+            <div class="txt">45</div>
+            <div class="txt">50</div>
+        </div>
+        <input type="range" class="btn" min="0" max="100" value="0" oninput="aa()">
+        <input type="range" class="btn" min="0" max="100" value="100" oninput="aa()">
+        <div class="middle"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    var arr = [$('.txt').eq(0)]
+    var arrr = [$('.txt').eq($('.txt').length - 1)]
+    function aa() {
+        if ($('.btn').eq(1).val() - $('.btn').eq(0).val() <= 0) $('.btn').eq(1).val($('.btn').eq(0).val())
+        $('.middle').css({
+            width: $('.btn').eq(1).val() - $('.btn').eq(0).val() + "%",
+            marginLeft: $('.btn').eq(0).val() + "%"
+        })
+        $.each($('.txt'), (i, e) => {
+            if ($('.middle').offset().left > $(e).offset().left) arr.push($(e))
+            var nn = 375 - $('.middle').offset().left - parseInt($('.middle').css('width')) - (375 - $(e).offset().left - 12)
+            if (nn > -5 && nn < 5) arrr.push($(e))
+        })
+        $(".txt").removeClass('on')
+        arr[arr.length - 1].addClass('on')
+        arrr[arrr.length - 1].addClass('on')
+    }
+</script>

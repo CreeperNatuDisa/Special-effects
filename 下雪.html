@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下雪</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: black;
+        overflow-x: hidden;
+    }
+</style>
+<body>
+</body>
+
+</html>
+
+<script>
+    // var xue= $('<img src="images/doge.png" style="position:absolute;top:-30px;">')
+    var xue= $("<div style='position:absolute;color:#fff;top:-30px;'>❄</div>")
+    setInterval(snow,50)
+    function snow(){
+        xue.clone().appendTo("body").css({
+            left:Math.random()*$(window).width(),
+            opacity:0.4+Math.random()*0.5,
+            fontSize:15+Math.random()*20
+            // width:30+Math.random()*50
+        }).animate({
+            top:$(window).height()-60,
+        },5000+Math.random()*5000,function(){
+            $(this).fadeOut(3000)
+            setTimeout(()=>{$(this).remove()},3000)
+        })
+    }
+    function snow2(){
+        xue.clone().appendTo("body").css({
+            left:Math.random()*$(window).width(),
+            opacity:0.4+Math.random()*0.5,
+            fontSize:15+Math.random()*20+"px"
+        }).animate({
+            top:$(window).height()-60,
+            left:Math.random()*$(window).width()
+        },5000+Math.random()*5000,function(){
+            $(this).fadeOut(3000)
+            setTimeout(()=>{$(this).remove()},3000)
+        })
+    }
+    function snow3(){
+        xue.clone().appendTo("body").css({
+            left:Math.random()*$(window).width(),
+            opacity:0.4+Math.random()*0.5,
+            fontSize:15+Math.random()*20+"px"
+        }).animate({
+            top:Math.random()*$(window).height()-100,
+            left:Math.random()*$(window).width()
+        },5000+Math.random()*5000,function(){
+            $(this).animate({
+            top:$(window).height()-80,
+            left:Math.random()*$(window).width()
+        },5000+Math.random()*5000,function(){
+            $(this).fadeOut(3000)
+            setTimeout(()=>{$(this).remove()},3000)
+        })
+        })
+    }
+</script>
