@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>粒子特效</title>
-  </head>
-  <style>
-    body {
-      background-color: #000;
-    }
-  </style>
-  <body>
-    <span class="bg"></span>
-    <canvas id="canvas"></canvas>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>粒子特效</title>
+</head>
+<style>
+  body {
+    background-color: #000;
+  }
+</style>
+
+<body>
+  <span class="bg"></span>
+  <canvas id="canvas"></canvas>
+</body>
+
 </html>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script>
@@ -34,7 +37,7 @@
         n = 400;
         nn = 100;
       }
-    } catch (e) {}
+    } catch (e) { }
     const particleNum = n;
     const lineDistance = nn;
     const colorRGB = "254,250,224";
@@ -94,9 +97,8 @@
             Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
           );
           if (distance < lineDistance) {
-            ctx.strokeStyle = `rgba(${colorRGB},${
-              1 - distance / lineDistance
-            })`;
+            ctx.strokeStyle = `rgba(${colorRGB},${1 - distance / lineDistance
+              })`;
             ctx.beginPath();
             ctx.lineWidth = 0.8;
             ctx.moveTo(p1.x, p1.y);

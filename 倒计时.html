@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>倒计时</title>
-	<meta charset="UTF-8">
-	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>倒计时</title>
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
-	<h1 id="countdown"></h1>
+    <h1 id="countdown"></h1>
 </body>
+
 </html>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // 目标日期，注意月份从 0 开始计数
         var targetDate = new Date(2023, 3, 1, 6);
 
         // 每秒钟更新一次倒计时
-        var countdownTimer = setInterval(function() {
+        var countdownTimer = setInterval(function () {
             // 获取当前日期
             var currentDate = new Date();
 

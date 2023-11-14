@@ -45,6 +45,7 @@
         box-shadow: 0 0 10px 1px #bebebe;
         pointer-events: auto;
     }
+
     .middle {
         width: 100%;
         height: 100%;
@@ -64,8 +65,8 @@
 </html>
 <script>
     function aa() {
-        var n=$('.btn').eq(0).val()
-        if($('.btn').eq(1).val() - $('.btn').eq(0).val()<=0) $('.btn').eq(1).val(n)
+        var n = $('.btn').eq(0).val()
+        if ($('.btn').eq(1).val() - $('.btn').eq(0).val() <= 0) $('.btn').eq(1).val(n)
         $('.middle').css({
             width: $('.btn').eq(1).val() - $('.btn').eq(0).val() + "%",
             marginLeft: $('.btn').eq(0).val() + "%"

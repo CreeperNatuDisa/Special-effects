@@ -71,9 +71,9 @@
 <script>
   var nnn = 200
   if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-    $('.box').css("margin-top","50%")
+    $('.box').css("margin-top", "50%")
   } else {
-    $('.box').css("margin-top","10%")
+    $('.box').css("margin-top", "10%")
     nnn = nnn * 3
   }
   $('svg').css({ height: nnn, width: nnn })
@@ -114,7 +114,7 @@
         n = 400;
         nn = 100;
       }
-    } catch (e) {}
+    } catch (e) { }
     const particleNum = n;
     const lineDistance = nn;
     const colorRGB = "254,250,224";
@@ -174,9 +174,8 @@
             Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
           );
           if (distance < lineDistance) {
-            ctx.strokeStyle = `rgba(${colorRGB},${
-              1 - distance / lineDistance
-            })`;
+            ctx.strokeStyle = `rgba(${colorRGB},${1 - distance / lineDistance
+              })`;
             ctx.beginPath();
             ctx.lineWidth = 0.8;
             ctx.moveTo(p1.x, p1.y);

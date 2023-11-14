@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写签名</title>
+</head>
+<style>
+    #cvs {
+        border: 1px solid #aaa;
+        width: 900px;
+        height: 500px;
+        background-color: #000;
+    }
+
+    img {
+        width: 900px;
+        height: 500px;
+        background-color: #000;
+    }
+</style>
+
+<body>
+    <canvas id="cvs"></canvas>
+    <img id="outputImg">
+    <br>
+    <button id="clearBtn">清除</button>
+    <button id="convertBtn">转换成图片</button>
+    <button id="saveBtn">保存图片</button>
+</body>
+
+</html>
+<script>
+    const cvs = document.getElementById('cvs');
+    cvs.width = document.getElementById('cvs').clientWidth;
+    cvs.height = document.getElementById('cvs').clientHeight;
+    const ctx = cvs.getContext('2d');
+    let isDrawing = false;
+
+    cvs.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+    });
+
+    cvs.addEventListener('mousemove', (e) => {
+        if (isDrawing) {
+            ctx.strokeStyle = "#fff"
+            ctx.lineWidth = 2;
+            ctx.lineTo(e.pageX - cvs.offsetLeft, e.pageY - cvs.offsetTop);
+            ctx.stroke();
+        }
+    });
+
+    cvs.addEventListener('mouseup', () => {
+        isDrawing = false;
+        ctx.beginPath()
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        ctx.beginPath();
+    });
+
+    document.getElementById('convertBtn').addEventListener('click', () => {
+        const imgDataUrl = cvs.toDataURL('image/png');
+        const outputImg = document.getElementById('outputImg');
+        outputImg.src = imgDataUrl;
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', () => {
+        const imgDataUrl = cvs.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = imgDataUrl;
+        link.download = 'signature.png';
+        link.click();
+    });
+</script>

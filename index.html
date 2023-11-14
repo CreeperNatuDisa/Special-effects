@@ -1,108 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>跳转大厅</title>
-  </head>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.css"
-  />
-  <!-- 石蒜 -->
-  <style>
-    #sakana-widget-chisato {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-    }
-    #sakana-widget-takina {
-      position: fixed;
-      left: 24px;
-      bottom: 24px;
-    }
-    main {
-      text-align: center;
-      margin: 24px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-    }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>跳转大厅</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.css" />
+<!-- 石蒜 -->
+<style>
+  #sakana-widget-chisato {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+  }
+
+  #sakana-widget-takina {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+  }
+
+  main {
+    text-align: center;
+    margin: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  main div {
+    margin-top: 16px;
+    display: flex;
+  }
+
+  @media screen and (max-width: 768px) {
     main div {
-      margin-top: 16px;
-      display: flex;
+      display: none;
     }
-    @media screen and (max-width: 768px) {
-      main div {
-        display: none;
-      }
-    }
-    main a,
-    main a:visited {
-      margin-top: 32px;
-      display: block;
-      color: inherit;
-      background-color: #eeeeee;
-      font-size: 18px;
-      width: 140px;
-      height: 40px;
-      line-height: 40px;
-      border-radius: 2px;
-      text-decoration: none;
-    }
-    main a:hover,
-    main a:active {
-      color: #ffffff;
-      background-color: #7793cc;
-      text-decoration: none;
-    }
-  </style>
-  <style>
-    body {
-      background-color: #000;
-    }
-    .box {
-      position: absolute;
-      z-index: 10;
-    }
-    .box a {
-      color: pink;
-      text-decoration: none;
-      display: block;
-      margin: 20px 10px;
-    }
-    a:hover {
-      color: #fff;
-    }
-    #canvas,
-    .bg {
-      position: absolute;
-    }
-  </style>
-  <body>
-    <span class="bg"></span>
-    <canvas id="canvas"></canvas>
-    <div class="box">
-      <a href="滑动跳转.html">滑动跳转</a>
-      <a href="粒子特效.html">粒子特效</a>
-      <a href="流星雨.html">流星雨</a>
-      <a href="文字弹跳.html">文字弹跳</a>
-      <a href="旋转加载动画.html">旋转加载动画</a>
-      <a href="圆形进度条.html">圆形进度条</a>
-      <a href="文字剪纸.html">文字剪纸</a>
-      <a href="滑动跟踪导航栏.html">滑动跟踪导航栏</a>
-    </div>
-    <div id="sakana-widget-chisato"></div>
-    <div id="sakana-widget-takina"></div>
-  </body>
+  }
+
+  main a,
+  main a:visited {
+    margin-top: 32px;
+    display: block;
+    color: inherit;
+    background-color: #eeeeee;
+    font-size: 18px;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+
+  main a:hover,
+  main a:active {
+    color: #ffffff;
+    background-color: #7793cc;
+    text-decoration: none;
+  }
+</style>
+<style>
+  body {
+    background-color: #000;
+  }
+
+  .box {
+    position: absolute;
+    z-index: 10;
+  }
+
+  .box a {
+    color: pink;
+    text-decoration: none;
+    display: block;
+    margin: 20px 10px;
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  #canvas,
+  .bg {
+    position: absolute;
+  }
+</style>
+
+<body>
+  <span class="bg"></span>
+  <canvas id="canvas"></canvas>
+  <div class="box">
+    <a href="滑动跳转.html">滑动跳转</a>
+    <a href="粒子特效.html">粒子特效</a>
+    <a href="流星雨.html">流星雨</a>
+    <a href="文字弹跳.html">文字弹跳</a>
+    <a href="旋转加载动画.html">旋转加载动画</a>
+    <a href="圆形进度条.html">圆形进度条</a>
+    <a href="文字剪纸.html">文字剪纸</a>
+    <a href="滑动跟踪导航栏.html">滑动跟踪导航栏</a>
+  </div>
+  <div id="sakana-widget-chisato"></div>
+  <div id="sakana-widget-takina"></div>
+</body>
+
 </html>
 <!-- 石蒜 -->
-<script
-  async
-  onload="initSakanaWidget()"
-  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.js"
-></script>
+<script async onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.js"></script>
 <script>
   function initSakanaWidget() {
     new SakanaWidget().mount("#sakana-widget-chisato");
@@ -111,8 +118,8 @@
 </script>
 <!-- 粒子特效 -->
 <script>
-    var n=0;
-    var nn=0;
+  var n = 0;
+  var nn = 0;
   (function () {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
@@ -127,7 +134,7 @@
         n = 400;
         nn = 100;
       }
-    } catch (e) {}
+    } catch (e) { }
     const particleNum = n;
     const lineDistance = nn;
     const colorRGB = "254,250,224";
@@ -187,9 +194,8 @@
             Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
           );
           if (distance < lineDistance) {
-            ctx.strokeStyle = `rgba(${colorRGB},${
-              1 - distance / lineDistance
-            })`;
+            ctx.strokeStyle = `rgba(${colorRGB},${1 - distance / lineDistance
+              })`;
             ctx.beginPath();
             ctx.lineWidth = 0.8;
             ctx.moveTo(p1.x, p1.y);
@@ -248,5 +254,5 @@
     } else {
       console.log("电脑");
     }
-  } catch (e) {}
+  } catch (e) { }
 </script>

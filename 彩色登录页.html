@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彩色登录</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-round {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+        top: -50%;
+        left: 50%;
+        filter: blur(200px);
+    }
+
+    .back-pink {
+        transform: translate(-45%, -10%);
+        background-color: #fb54aa;
+    }
+
+    .back-blue {
+        transform: translate(-105%, 90%) scale(0.6);
+        background-color: #29d1f8;
+    }
+
+    .back-yellow {
+        transform: translate(-10%, 90%) scale(0.6);
+        background-color: #fef0c7;
+    }
+
+    .back-circle {
+        width: calc(200px*var(--wh));
+        height: calc(200px*var(--wh));
+        border-radius: 50%;
+        position: absolute;
+        z-index: 5;
+        overflow: hidden;
+    }
+
+    .back-circle::after,
+    .back-circle::before {
+        position: absolute;
+        content: " ";
+        display: block;
+        opacity: .5;
+        filter: blur(20px);
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, .5), rgba(255, 255, 255, .1));
+        width: 100%;
+        height: 30%;
+        box-shadow: 0 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-circle::before {
+        background-image: linear-gradient(to top, rgba(255, 255, 255, .5), rgba(255, 255, 255, .1));
+        bottom: 0;
+    }
+
+    .circle-first {
+        left: 200px;
+        top: 60px;
+        transform: rotate(calc(90deg*var(--wh)));
+    }
+
+    .circle-second {
+        right: 150px;
+        top: 150px;
+        transform: rotate(calc(120deg*var(--wh))) scale(var(--wh));
+    }
+
+    .circle-third {
+        left: 250px;
+        bottom: 50px;
+        transform: rotate(calc(90deg*var(--wh))) scale(var(--wh));
+    }
+
+    .box-login {
+        position: absolute;
+        z-index: 999;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        border-radius: 20px;
+        backdrop-filter: blur(50px);
+        background-color: rgba(255, 255, 255, .1);
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        border-right: 1px solid rgba(255, 255, 255, .2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+    }
+
+    .box-login .float-box {
+        position: absolute;
+        width: calc(60px *var(--wh));
+        height: calc(60px *var(--wh));
+        z-index: 10;
+        border-radius: 10px;
+        animation: float 4s linear infinite;
+        animation-delay: calc(-1s*var(--i));
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, .1);
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        border-right: 1px solid rgba(255, 255, 255, .2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(-50%);
+        }
+
+        50% {
+            transform: translateY(-80%);
+        }
+    }
+
+    .box-login .float-box:nth-child(1) {
+        left: -10%;
+        top: -10%;
+    }
+
+    .box-login .float-box:nth-child(2) {
+        top: 50%;
+        left: -20%;
+    }
+
+    .box-login .float-box:nth-child(3) {
+        right: 10%;
+        top: -10%;
+    }
+
+    .box-login .float-box:nth-child(4) {
+        right: -20%;
+        bottom: -20%;
+    }
+
+    .box-login .float-box:nth-child(5) {
+        left: 10%;
+        bottom: -25%;
+    }
+
+    .box-login {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 50px;
+        box-sizing: border-box;
+        color: #fff;
+        justify-content: space-around;
+    }
+
+    .box-login>h2 {
+        font-size: 30px;
+        position: relative;
+    }
+
+    .box-login>h2::after {
+        content: " ";
+        display: block;
+        width: 45px;
+        height: 5px;
+        background-color: #fff;
+    }
+
+    .box-login .inp {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box-login .inp>input {
+        background-color: rgba(255, 255, 255, .2);
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 15px 10px;
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        border-right: 1px solid rgba(255, 255, 255, .2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+        letter-spacing: 1px;
+        font-size: 16px;
+        margin: 10px 0;
+        border-radius: 50px;
+        color: #fff;
+    }
+
+    .box-login .inp>input::placeholder {
+        color: #fff;
+    }
+
+    .box-login .login-btn {
+        background-color: #fff;
+        border: none;
+        font-size: 16px;
+        max-width: 100px;
+        padding: 10px 0;
+        border-radius: 50px;
+        transition: 1s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+    }
+
+    .box-login .login-btn:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, .2);
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        border-right: 1px solid rgba(255, 255, 255, .2);
+    }
+
+    .box-login .other a {
+        color: #fff;
+    }
+
+    .box-login .other {
+        text-shadow: 0 0 5px rgba(0, 0, 0, .5);
+        line-height: 40px;
+    }
+</style>
+
+<body>
+    <div class="back-round back-pink"></div>
+    <div class="back-round back-yellow"></div>
+    <div class="back-round back-blue"></div>
+
+    <div class="back-circle circle-first" style="--wh:1.2;"></div>
+    <div class="back-circle circle-second" style="--wh:1.4;"></div>
+    <div class="back-circle circle-third" style="--wh:1.6;"></div>
+
+    <div class="box-login">
+        <div class="float-box" style="--i:0;--wh:1.5;"></div>
+        <div class="float-box" style="--i:1;--wh:1;"></div>
+        <div class="float-box" style="--i:2;--wh:1.1;"></div>
+        <div class="float-box" style="--i:3;--wh:2;"></div>
+        <div class="float-box" style="--i:5;--wh:1.4;"></div>
+        <h2>登录</h2>
+        <div class="inp">
+            <input type="text" placeholder="请输入账号">
+            <input type="password" placeholder="请输入密码">
+        </div>
+        <button class="login-btn">登录</button>
+        <div class="other">
+            <div class="forgot-pwd">忘记密码？<a
+                    href="https://vdse.bdstatic.com//192d9a98d782d9c74c96f09db9378d93.mp4">点击这里</a></div>
+            <div class="no-acc">没有账号？<a href="https://vdse.bdstatic.com//192d9a98d782d9c74c96f09db9378d93.mp4">注册</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+</script>
