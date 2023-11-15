@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #000;
+    }
+
+    h1 {
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-size: 50px;
+        width: 100%;
+        text-align: center;
+        transform-style: preserve-3d;
+    }
+
+    h1 span {
+        animation: font-animation none infinite linear;
+        animation-duration: 1.2s;
+        display: inline-block;
+        margin: 0 0.5em;
+        transition: transform 0.3s ease-out;
+    }
+
+    h1 span:hover {
+        transform: scale(1.5);
+    }
+
+    @keyframes font-animation {
+        0% {
+            text-shadow: -30px 0 100px #fff;
+            color: #fff;
+        }
+
+        50% {
+            text-shadow: 0 0 0;
+        }
+
+        100% {
+            text-shadow: 30px 0 100px #ff0266;
+            color: #ff0266;
+        }
+    }
+</style>
+
+<body>
+    <h1></h1>
+</body>
+
+</html>
+<script>
+    const inputString = "CreeperNatuDisda";
+    let wordsArray = inputString.split('');
+    const dom = document.querySelector('h1');
+    for (const key in wordsArray) {
+        dom.innerHTML += `<span style="animation-delay:${0.08 * key}s;">${wordsArray[key]}</span>`;
+    }
+</script>
