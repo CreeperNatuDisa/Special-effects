@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标移入移出文字过渡效果</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        overflow: hidden;
+        background-color: black;
+    }
+
+    .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        position: relative;
+        overflow: hidden;
+        font-size: 2vw;
+    }
+
+    .content::before {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0 0 0 0;
+        z-index: -1;
+        background-color: #fff;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 1s ease;
+    }
+
+    .content:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+        <div class="content">原神启动！！！</div>
+    </div>
+</body>
+
+</html>
+<script></script>

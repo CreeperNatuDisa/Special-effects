@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性扩展板</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul {
+        font-size: 3vw;
+        display: flex;
+    }
+
+    ul li {
+        flex: 1;
+        text-align: center;
+        line-height: 100vh;
+        transition: 0.5s;
+    }
+
+    ul li:nth-child(1) {
+        background-color: aqua;
+    }
+
+    ul li:nth-child(2) {
+        background-color: pink;
+    }
+
+    ul li:nth-child(3) {
+        background-color: skyblue;
+    }
+
+    ul li:nth-child(4) {
+        background-color: orange;
+    }
+
+    ul li:nth-child(5) {
+        background-color: greenyellow;
+    }
+
+    ul li:hover {
+        flex: 2;
+        color: #fff;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+        <li>vue</li>
+    </ul>
+</body>
+
+</html>
+<script></script>
