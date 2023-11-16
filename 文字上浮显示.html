@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字上浮显示</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" />
+</head>
+<style>
+    body {
+        background-color: #191919;
+        font-size: 2vw;
+        font-family: "Luckiest Guy", cursive;
+        color: #fff;
+    }
+
+    body::-webkit-scrollbar {
+        width: .5vw;
+        background-color: skyblue;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: pink;
+    }
+
+
+    span {
+        opacity: 0;
+        animation: buoy .5s ease-in-out forwards;
+        display: inline-block;
+        min-width: 67px;
+    }
+
+    @keyframes buoy {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+</style>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    const txt = ["你说得对，但是《原神》是由米哈游自主研发的一款全新开放世界冒险游戏。游戏发生在一个被称作“提瓦特”的幻想世界，在这里，被神选中的人将被授予“神之眼”，导引元素之力。你将扮演一位名为“旅行者”的神秘角色，在自由的旅行中邂逅性格各异、能力独特的同伴们，和他们一起击败强敌，找回失散的亲人——同时，逐步发掘“原神”的真相。", `You're right, but the Original God is a new open-world adventure game developed by Mihayu. The game takes place in a fantasy world called Tivat, where those chosen by the gods are granted the "Eye of the Gods", the power of the guiding elements. You will play a mysterious role called "Traveler", in the free travel to meet different personalities, unique abilities of the companions, and together with them to defeat strong enemies, find lost relatives - at the same time, gradually discover the truth of the "original God".`, "你说得对，但是《贴吧》是由百度自主研发的一款全新嘴炮论坛喷人平台。贴吧含有一个被称作「孙笑川吧」的贴吧世界，在这里被吧主选中的人将被授予「米线」，引导「团建」之力。你将扮演一位名为「8u」的神秘用户，在自由的发帖中邂逅性格各异、到处**的贴吧老鼠们，和它们一起无中生有，找回被抄的游戏的同时，逐步降低「贴吧」的素质。", `You are right, but "Post bar" is a new mouth cannon forum spray platform independently developed by Baidu. The Tiebar contains a tiebar world called "Sun Xiaochuan Bar", where those selected by the bar master will be awarded "rice noodles" to guide the power of "group building". You will play a mysterious user named "8u", encounter different personalities, everywhere in the free Posting of the post bar rats, and they together out of nothing, find the copied game at the same time, gradually reduce the quality of "post bar".`, "你说得对，但是《鬼泣五》是由卡普空自主研发的一款全新动作类冒险游戏。游戏发生在一个被称作「红墓市」的幻想世界，在这里，被斯巴达选中的人将被授予「魔人」，导引恶魔之力。你将扮演一位名为「恶魔猎人」的神秘角色，在自由的旅行中邂逅性格各异、能力独特的同伴们，和他们一起击败强敌，阻止魔树侵袭的同时，逐步发掘「V」的真相。", `You're right, but Devil May Cry 5 is a new action-adventure game developed by Capcom itself. The game takes place in a fantasy world known as Red Tomb City, where those chosen by the Spartans are granted "demon men" to direct the powers of demons. You will play a mysterious role called "demon Hunter", in the free travel to meet different personalities, unique abilities of the companions, together with them to defeat the enemy, prevent the invasion of the magic tree at the same time, gradually discover the truth of "V".`];
+    let i = 0;
+    let runtime = txt[i].split('').length * 100;
+    function slide() {
+        const txtArr = txt[i].split('')
+        let div = document.createElement('div')
+        for (n in txtArr) {
+            let span = document.createElement('span')
+            span.textContent = txtArr[n]
+            span.style.animationDelay = n * (1 / 10) + 's'
+            div.appendChild(span)
+            document.body.appendChild(div)
+        }
+    }
+    function startSlideShow() {
+        slide()
+        if (i >= txt.length - 1) return
+        const timer = setInterval(() => {
+            i++;
+            clearInterval(timer)
+            runtime = txt[i].split('').length * 100
+            startSlideShow()
+        }, runtime);
+    }
+    startSlideShow()
+</script>
