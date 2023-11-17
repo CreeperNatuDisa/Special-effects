@@ -1,0 +1,51 @@
+#sakana-widget-chisato {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+}
+
+#sakana-widget-takina {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+}
+
+main {
+  text-align: center;
+  margin: 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+main div {
+  margin-top: 16px;
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  main div {
+    display: none;
+  }
+}
+
+main a,
+main a:visited {
+  margin-top: 32px;
+  display: block;
+  color: inherit;
+  background-color: #eeeeee;
+  font-size: 18px;
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+main a:hover,
+main a:active {
+  color: #ffffff;
+  background-color: #7793cc;
+  text-decoration: none;
+}
