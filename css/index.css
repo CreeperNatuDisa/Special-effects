@@ -1,25 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  text-decoration: none;
+}
+#sakana-widget-chisato,
+#sakana-widget-takina {
+  z-index: 99;
+}
 body {
   background-color: #000;
   overflow: hidden;
+}
+#canvas,
+.bg {
+  position: absolute;
 }
 
 #box {
   position: absolute;
   z-index: 10;
+  height: 75vh;
+}
+
+.back-glass {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 #box a {
-  color: pink;
-  text-decoration: none;
-  display: block;
-  margin: 20px 10px;
+  font-size: 1.2vw;
+  text-align: center;
+  float: left;
+  width: 10%;
+  padding: 15px 10px;
+  border-radius: 20px;
+  transition: transform 0.2s ease-in-out;
+  margin: 10px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
-
-a:hover {
-  color: #fff;
-}
-
-#canvas,
-.bg {
-  position: absolute;
+#box a:hover {
+  transform: scale(1.2);
 }

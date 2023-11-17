@@ -7,25 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>跳转大厅</title>
   <link rel="icon" href="./images/logo.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.css" />
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/sakana.css">
+  <script src="./src/vue.js"></script>
+  <script async onload="initSakanaWidget()"
+    src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"></script>
 </head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.css" />
-<link rel="stylesheet" href="./css/index.css">
-<link rel="stylesheet" href="./css/sakana.css">
 
 <body>
   <span class="bg"></span>
   <canvas id="canvas"></canvas>
-  <div id="box">
-    <a href="粒子特效.html">粒子特效</a>
-  </div>
   <div id="sakana-widget-chisato"></div>
   <div id="sakana-widget-takina"></div>
+  <div id="box">
+    <a v-for="(item,i) in fileList" :href="item+'.html'" class="back-glass">{{item}}</a>
+  </div>
 </body>
 
 </html>
-<!-- 石蒜 -->
-<script async onload="initSakanaWidget()"
-  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"></script>
 <script src="./js/粒子特效.js"></script>
-<script src="./src/vue.global.js"></script>
 <script src="./js/index.js"></script>
