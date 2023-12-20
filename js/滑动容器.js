@@ -1,16 +1,12 @@
 // 获取所有滑动项和滑动容器
 let item = document.querySelectorAll('.slide .item');
+let point = document.querySelectorAll('.point-cont .point');
 let slide = document.querySelector('.slide');
 
 item.forEach(item => item.style.backgroundColor = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`)
 
 // 设置和监听滑动容器的宽度为所有项的总宽度
 slide.style.width = item.length + "00%";
-window.addEventListener("resize", function () {
-    console.log("onChange")
-    slide.style.width = item.length + "00%";
-})
-
 
 // 获取单个项的宽度
 let itemWidth = item[0].offsetWidth;
@@ -82,6 +78,8 @@ slide.addEventListener('touchend', function (e) {
     item.forEach((item, index) => {
         // 获取项的左侧视窗偏移值
         let itemTransX = Math.abs(item.getBoundingClientRect().left);
+        // 给每个项移除选中的类名
+        point[index].classList.remove('active');
         // 比较并更新最小距离和当前项的索引
         if (itemTransX < minDistance) {
             // 更新最小值
@@ -92,6 +90,8 @@ slide.addEventListener('touchend', function (e) {
     })
     // 将最近的项显示
     slide.style.transform = `translateX(${-nowIndex * itemWidth}px)`
+    // 给当前显示项的对应指示点添加类名
+    point[nowIndex].classList.add('active')
     // 关闭触摸
     flag = false;
 })
@@ -110,6 +110,8 @@ slide.addEventListener('mouseup', function (e) {
     item.forEach((item, index) => {
         // 获取项的左侧视窗偏移值
         let itemTransX = Math.abs(item.getBoundingClientRect().left);
+        // 给每个项移除选中的类名
+        point[index].classList.remove('active');
         // 比较并更新最小距离和当前项的索引
         if (itemTransX < minDistance) {
             // 更新最小值
@@ -120,6 +122,8 @@ slide.addEventListener('mouseup', function (e) {
     })
     // 将最近的项显示
     slide.style.transform = `translateX(${-nowIndex * itemWidth}px)`
+    // 给当前显示项的对应指示点添加类名
+    point[nowIndex].classList.add('active')
     // 关闭触摸
     flag = false;
 })

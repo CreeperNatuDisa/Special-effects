@@ -40,6 +40,29 @@
         color: #fff;
         line-height: var(--slideHeight);
     }
+
+    .box .point-cont {
+        position: absolute;
+        left: 50%;
+        bottom: 2vh;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        height: 2vh;
+    }
+
+    .box .point-cont .point {
+        height: 100%;
+        width: 20%;
+        border-radius: 50px;
+        margin: 0 10px;
+        background-color: rgba(0, 0, 0, .3);
+    }
+
+    .box .point-cont .active {
+        background: #fff;
+    }
 </style>
 
 <body>
@@ -50,6 +73,13 @@
             <div class="item">3</div>
             <div class="item">4</div>
             <div class="item">5</div>
+        </div>
+        <div class="point-cont">
+            <div class="point active"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
         </div>
     </div>
 </body>
