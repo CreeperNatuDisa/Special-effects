@@ -11,6 +11,16 @@ const vm = new Vue({
 
     },
     methods: {
-
+        async fetchData() {
+            try {
+                const response = await fetch('example.txt');
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status}`);
+                }
+                this.fileContent = await response.text();
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
     },
 })

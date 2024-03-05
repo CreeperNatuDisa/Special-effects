@@ -93,7 +93,7 @@ slider(3000)
 // 轮播函数
 function slider(time) {
     // 定时器
-    setInterval(() => {
+    let setInt = setInterval(() => {
         // 判断当前显示的项并添加过渡动画
         if (nowIndex >= item.length - 1) {
             nowIndex = 0;
